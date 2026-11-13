@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CosmoChem | Mission Control</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+<header>
+  <a class="brand" href="#" data-go="inicio">
+    ✦ COSMOCHEM
+    <small>MISSION CONTROL</small>
+  </a>
+
+  <span class="live">● SISTEMA OPERATIVO</span>
+
+  <button id="menu">☰</button>
+
+  <nav id="nav">
+    <button data-tab="inicio">INICIO</button>
+    <button data-tab="exoplanetas">EXOPLANETAS</button>
+    <button data-tab="supernovas">SUPERNOVAS</button>
+    <button data-tab="kilonovas">KILONOVAS</button>
+    <button data-tab="elementos">ELEMENTOS</button>
+    <button data-tab="laboratorio">LABORATORIO</button>
+    <button data-tab="desafios">DESAFÍOS</button>
+    <button data-tab="proyecto">PROYECTO</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- INICIO -->
+
+  <section id="inicio" class="page active">
+
+    <div class="hero">
+      <div>
+        <p class="eyebrow">CENTRO DE INVESTIGACIÓN · ASTROBIOLOGÍA</p>
+
+        <h1>
+          EL UNIVERSO<br>
+          <em>EN NUESTRAS MANOS</em>
+        </h1>
+
+        <p>
+          Explora el origen de los elementos químicos, los fenómenos
+          estelares y las condiciones que podrían permitir vida
+          más allá de la Tierra.
+        </p>
+
+        <button class="primary" data-go="exoplanetas">
+          INICIAR EXPLORACIÓN ↗
+        </button>
+      </div>
+
+      <div class="planet-art">
+        <div></div>
+        <span>COSMIC ORIGINS / 01</span>
+      </div>
+    </div>
+
+    <h2>RUTAS DE EXPLORACIÓN</h2>
+
+    <div class="tiles">
+
+      <button data-go="exoplanetas">
+        <b>01 / EXOPLANETAS</b>
+        <p>Compara cuatro mundos y sus condiciones ambientales.</p>
+      </button>
+
+      <button data-go="supernovas">
+        <b>02 / SUPERNOVAS</b>
+        <p>Investiga explosiones estelares y elementos dispersados.</p>
+      </button>
+
+      <button data-go="kilonovas">
+        <b>03 / KILONOVAS</b>
+        <p>Explora fusiones de estrellas de neutrones y proceso r.</p>
+      </button>
+
+      <button data-go="elementos">
+        <b>04 / QUÍMICA CÓSMICA</b>
+        <p>Conoce los seis elementos esenciales CHNOPS.</p>
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- EXOPLANETAS -->
+
+  <section id="exoplanetas" class="page">
+
+    <div class="heading">
+      <p class="eyebrow">EXPLORACIÓN ESPACIAL / 001</p>
+      <h1>EXOPLANET <em>EXPLORER</em></h1>
+      <p>
+        Selecciona un mundo. Arrastra para rotar el modelo
+        y utiliza la rueda para acercar o alejar.
+      </p>
+    </div>
+
+    <div class="layout">
+
+      <div>
+        <div class="frame">
+          <label>LIVE 3D SIMULATION</label>
+          <div id="planet3d" class="three"></div>
+          <label>TEXTURAS ARTÍSTICAS · NO SON FOTOGRAFÍAS</label>
+        </div>
+
+        <div id="planet-buttons" class="selectors"></div>
+      </div>
+
+      <div class="panel">
+        <p class="eyebrow">TARGET SELECTED</p>
+        <h2 id="planet-name"></h2>
+        <p id="planet-desc" class="muted"></p>
+        <div id="planet-data"></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SUPERNOVAS -->
+
+  <section id="supernovas" class="page">
+
+    <div class="heading">
+      <p class="eyebrow">FENÓMENOS ESTELARES / 002</p>
+      <h1>SUPERNOVA <em>ANALYSIS</em></h1>
+      <p>
+        Explosión estelar y dispersión de material enriquecido al espacio.
+      </p>
+    </div>
+
+    <div class="layout">
+
+      <div>
+        <div class="frame">
+          <label>3D EVENT SIMULATION</label>
+          <div id="supernova3d" class="three"></div>
+        </div>
+
+        <div class="controls">
+          <button data-event="supernova" data-phase="0">01 · ANTES</button>
+          <button data-event="supernova" data-phase="1">02 · EXPLOSIÓN</button>
+          <button data-event="supernova" data-phase="2">03 · REMANENTE</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>SUPERNOVA</h2>
+        <div id="supernova-data"></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- KILONOVAS -->
+
+  <section id="kilonovas" class="page">
+
+    <div class="heading">
+      <p class="eyebrow">FENÓMENOS ESTELARES / 003</p>
+      <h1>KILONOVA <em>ANALYSIS</em></h1>
+      <p>
+        Fusión de objetos compactos y formación de elementos pesados
+        mediante captura rápida de neutrones.
+      </p>
+    </div>
+
+    <div class="layout">
+
+      <div>
+        <div class="frame">
+          <label>3D EVENT SIMULATION</label>
+          <div id="kilonova3d" class="three"></div>
+        </div>
+
+        <div class="controls">
+          <button data-event="kilonova" data-phase="0">01 · ÓRBITA</button>
+          <button data-event="kilonova" data-phase="1">02 · FUSIÓN</button>
+          <button data-event="kilonova" data-phase="2">03 · EXPULSIÓN</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>KILONOVA</h2>
+        <div id="kilonova-data"></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ELEMENTOS -->
+
+  <section id="elementos" class="page">
+
+    <div class="heading">
+      <p class="eyebrow">QUÍMICA CÓSMICA / 004</p>
+      <h1>ELEMENTS OF <em>LIFE</em></h1>
+      <p>
+        Selecciona un elemento para ver su átomo,
+        función biológica y origen cósmico.
+      </p>
+    </div>
+
+    <div class="element-layout">
+
+      <div id="elements-list" class="elements-list"></div>
+
+      <div class="panel element-panel">
+
+        <div id="atom"></div>
+
+        <p class="muted">
+          MODELO TIPO BOHR ESQUEMÁTICO · NO A ESCALA
+        </p>
+
+        <h2 id="element-name"></h2>
+
+        <div id="element-stats" class="stats"></div>
+
+        <h3>FUNCIÓN BIOLÓGICA</h3>
+        <p id="element-function"></p>
+
+        <h3>ORIGEN CÓSMICO</h3>
+        <p id="element-origin"></p>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- LABORATORIO: PLANET BUILDER -->
+  <section id="laboratorio" class="page">
+    <div class="heading">
+      <p class="eyebrow">PLANET BUILDER / 006 · SIMULADOR EDUCATIVO</p>
+      <h1>LABORATORIO <em>PLANETARIO</em></h1>
+      <p>Construye un exoplaneta, modifica sus condiciones y completa una misión científica aleatoria.</p>
+    </div>
+    <div class="mission-banner panel">
+      <div><p class="eyebrow">MISIÓN ACTIVA</p><h2 id="mission-title">Cargando misión...</h2><p id="mission-desc" class="muted"></p></div>
+      <button class="primary" id="new-mission">↻ NUEVA MISIÓN</button>
+    </div>
+    <div class="builder-layout">
+      <div class="frame builder-view">
+        <label>PLANETA EN CONSTRUCCIÓN · ARRASTRA PARA ROTAR</label>
+        <div id="builder3d" class="three"></div>
+        <div class="planet-caption"><span id="planet-stage">MUNDO INICIAL · SUPERFICIE SIN DEFINIR</span><b id="habitability-live">0% ÍNDICE</b></div>
+      </div>
+      <div class="panel builder-controls">
+        <p class="eyebrow">01 / COMPONENTES</p><h2>Construye tu mundo</h2>
+        <p class="muted">Cada componente modifica la apariencia del planeta y sus condiciones simuladas.</p>
+        <div class="component-grid">
+          <button class="component" data-component="water"><span>🌊</span><b>Agua</b><small>Añadir océanos</small></button>
+          <button class="component" data-component="atmosphere"><span>☁️</span><b>Atmósfera</b><small>Crear envoltura gaseosa</small></button>
+          <button class="component" data-component="land"><span>⛰️</span><b>Superficie rocosa</b><small>Formar continentes</small></button>
+          <button class="component" data-component="ice"><span>❄️</span><b>Hielo</b><small>Agregar regiones heladas</small></button>
+          <button class="component" data-component="magnetic"><span>🧲</span><b>Campo magnético</b><small>Mejorar protección</small></button>
+          <button class="component" data-component="chnops"><span>⚛️</span><b>CHNOPS</b><small>Agregar elementos esenciales</small></button>
+        </div>
+        <p class="eyebrow builder-subhead">02 / CONDICIONES AMBIENTALES</p>
+        <label class="range-label">Agua líquida <output id="water-out">0%</output></label><input id="water-range" type="range" min="0" max="100" value="0">
+        <label class="range-label">Temperatura superficial <output id="temp-out">−100 °C</output></label><input id="temp-range" type="range" min="-100" max="100" value="-100">
+        <label class="range-label">Densidad atmosférica <output id="air-out">0%</output></label><input id="air-range" type="range" min="0" max="100" value="0">
+        <label class="range-label">Estabilidad orbital <output id="orbit-out">50%</output></label><input id="orbit-range" type="range" min="0" max="100" value="50">
+        <button class="primary full" id="analyze-planet">ANALIZAR PLANETA ↗</button>
+        <button class="secondary full" id="reset-planet">REINICIAR PLANETA</button>
+      </div>
+    </div>
+    <div class="panel mission-result" id="mission-result" aria-live="polite">
+      <p class="eyebrow">03 / INFORME CIENTÍFICO</p><h2>Tu análisis aparecerá aquí</h2><p class="muted">Construye tu planeta y pulsa «Analizar planeta» para conocer el resultado de la misión.</p>
+    </div>
+    <p class="notice">Este laboratorio utiliza un índice educativo simplificado, no una probabilidad real de encontrar vida. La habitabilidad no demuestra que un planeta esté habitado.</p>
+  </section>
+
+  <!-- DESAFÍOS -->
+  <section id="desafios" class="page">
+    <div class="heading">
+      <p class="eyebrow">TRAINING CENTER / 006</p>
+      <h1>DESAFÍOS <em>CÓSMICOS</em></h1>
+      <p class="muted">Pon a prueba tus conocimientos de astronomía, astrobiología y química. Cada ronda mezcla preguntas diferentes.</p>
+    </div>
+    <div class="challenge-top panel">
+      <div><p class="eyebrow">CENTRO DE ENTRENAMIENTO</p><h2 id="challenge-category">Misión de conocimiento</h2><p class="muted" id="challenge-intro">Responde y descubre la explicación científica detrás de cada pista.</p></div>
+      <div class="challenge-score"><small>PUNTOS</small><b id="challenge-score">0</b></div>
+    </div>
+    <div class="panel" style="padding:16px;margin:14px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <label for="challenge-player" class="eyebrow" style="margin:0">ALIAS DEL PARTICIPANTE</label>
+      <input id="challenge-player" type="text" maxlength="40" placeholder="Ej. Explorador-01" style="flex:1;min-width:200px;padding:11px 12px;border:1px solid rgba(139,167,220,.35);border-radius:10px;background:#101c35;color:#eaf2ff">
+      <small class="muted">Se usará para organizar tus resultados en Google Sheets.</small>
+    </div>
+    <div class="challenge-categories" id="challenge-categories">
+      <button class="challenge-category active" data-category="all">✦ Todos</button>
+      <button class="challenge-category" data-category="astronomia">☄ Astronomía</button>
+      <button class="challenge-category" data-category="exoplanetas">◎ Exoplanetas</button>
+      <button class="challenge-category" data-category="quimica">⚛ Química</button>
+      <button class="challenge-category" data-category="astrobiologia">⌬ Astrobiología</button>
+    </div>
+    <div class="panel challenge-card" id="challenge-card" aria-live="polite">
+      <div class="challenge-meta"><span id="challenge-number">PREGUNTA 1 / 5</span><span id="challenge-topic">ASTRONOMÍA</span></div>
+      <h2 id="challenge-question">Preparando tu desafío...</h2>
+      <div id="challenge-options" class="challenge-options"></div>
+      <div id="challenge-feedback" class="challenge-feedback" hidden></div>
+      <div class="challenge-actions"><button class="primary" id="challenge-next" disabled>SIGUIENTE PREGUNTA ↗</button><button class="secondary" id="challenge-new">NUEVA RONDA</button></div>
+    </div>
+    <p class="notice">Las preguntas son actividades educativas. Después de responder, encontrarás una explicación para comprender el concepto, no solo memorizar la respuesta.</p>
+  </section>
+
+  <!-- PROYECTO -->
+
+  <section id="proyecto" class="page">
+
+    <div class="heading">
+      <p class="eyebrow">RESEARCH BRIEF / 005</p>
+      <h1>EL PROYECTO <em>COSMOCHEM</em></h1>
+    </div>
+
+    <div class="research">
+
+      <p class="eyebrow">PREGUNTA DE INVESTIGACIÓN</p>
+
+      <h2>
+        ¿Cómo se relacionan los elementos químicos originados
+        en fenómenos estelares con las condiciones que podrían
+        permitir vida en los exoplanetas?
+      </h2>
+
+    </div>
+
+    <div class="tiles">
+
+      <article>
+        <b>HIPÓTESIS</b>
+        <p>
+          Los fenómenos estelares contribuyen a formar y dispersar
+          elementos esenciales; su presencia, junto con condiciones
+          ambientales adecuadas, puede favorecer la habitabilidad
+          de algunos exoplanetas.
+        </p>
+      </article>
+
+      <article>
+        <b>OBJETIVO GENERAL</b>
+        <p>
+          Explicar la relación entre nucleosíntesis estelar,
+          elementos esenciales para la vida y evaluación
+          de habitabilidad.
+        </p>
+      </article>
+
+      <article>
+        <b>METODOLOGÍA</b>
+        <p>
+          Investigación documental, comparación de datos científicos
+          y uso de modelos y simulaciones digitales.
+        </p>
+      </article>
+
+      <article>
+        <b>VARIABLES DE ANÁLISIS</b>
+        <p>
+          Origen y disponibilidad de elementos químicos;
+          condiciones físicas y ambientales de los exoplanetas.
+        </p>
+      </article>
+
+    </div>
+
+    <p class="notice">
+      La presencia de elementos esenciales no demuestra que exista vida.
+      La habitabilidad también depende de atmósfera, temperatura,
+      agua líquida, radiación y estabilidad ambiental.
+    </p>
+
+  </section>
+</main>
+
+<footer>
+  COSMOCHEM · ASTRONOMY · CHEMISTRY · ASTROBIOLOGY
+  <span>MISSION CONTROL / 2026</span>
+</footer>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
